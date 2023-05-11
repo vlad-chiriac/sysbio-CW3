@@ -24,7 +24,7 @@ run(tmax=2000, tstep=0.1,xlab="Time [years]",ylab="Population size", ymax= 10,
 
 plane(xmin=-1,ymin=-0.001,xmax=5,ymax=5,eps=-.001,show=names(s),zero=F,vector=TRUE,
       parms = c(s=5,d=0.5,a1=0.2,a2=0.3,c1=0.12,c2=0.1,d1=0.1,d2=0.13))
-plane(xmin=-0.001,ymin=-0.001,xmax=6,ymax=5,eps=-.001,show=names(s),zero=F,tstep=0.5,vector=T,portrait=T) 
+plane(xmin=-0.001,ymin=-0.001,xmax=8,ymax=5,eps=-.001,show=names(s),zero=F,tstep=0.5,vector=T,portrait=T)
 newton(c(N1=0,N2=2),plot=T)
 
 #start with no food

@@ -174,7 +174,7 @@ grass-growth-rate
 grass-growth-rate
 0.0
 20.0
-15.0
+12.0
 1.0
 1
 NIL
@@ -219,17 +219,17 @@ fishesB_birth-threshold
 fishesB_birth-threshold
 0.0
 100
-60.0
+82.0
 1.0
 1
 NIL
 HORIZONTAL
 
 PLOT
-6
-324
-277
-520
+811
+20
+1280
+608
 Populations
 Time
 Population
@@ -246,10 +246,10 @@ PENS
 "fish species B" 1.0 0 -8630108 true "" "plot count fishesB"
 
 MONITOR
-45
-523
-156
-568
+303
+24
+414
+69
 count species A
 count fishesA
 1
@@ -280,17 +280,17 @@ fishesA_birth_threshold
 fishesA_birth_threshold
 0
 100
-41.0
+26.0
 1
 1
 NIL
 HORIZONTAL
 
 MONITOR
-159
-523
-269
-568
+417
+24
+527
+69
 count species B
 count fishesB
 17
@@ -733,6 +733,101 @@ Polygon -7500403 true true 30 75 75 30 270 225 225 270
 NetLogo 6.3.0
 @#$#@#$#@
 @#$#@#$#@
+1.0
+    org.nlogo.sdm.gui.AggregateDrawing 34
+        org.nlogo.sdm.gui.StockFigure "attributes" "attributes" 1 "FillColor" "Color" 225 225 182 312 288 60 40
+            org.nlogo.sdm.gui.WrappedStock "seaweed" "0" 1
+        org.nlogo.sdm.gui.ReservoirFigure "attributes" "attributes" 1 "FillColor" "Color" 192 192 192 37 292 30 30
+        org.nlogo.sdm.gui.RateConnection 3 67 307 130 307 300 307 NULL NULL 0 0 0
+            org.jhotdraw.figures.ChopEllipseConnector REF 3
+            org.jhotdraw.standard.ChopBoxConnector REF 1
+            org.nlogo.sdm.gui.WrappedRate "seaweed-growth-rate * seaweed" "seaweed-growth"
+                org.nlogo.sdm.gui.WrappedReservoir  REF 2 0
+        org.nlogo.sdm.gui.ConverterFigure "attributes" "attributes" 1 "FillColor" "Color" 130 188 183 25 235 50 50
+            org.nlogo.sdm.gui.WrappedConverter "0.4" "seaweed-growth-rate"
+        org.nlogo.sdm.gui.StockFigure "attributes" "attributes" 1 "FillColor" "Color" 225 225 182 313 460 60 40
+            org.nlogo.sdm.gui.WrappedStock "fish_A" "fish_A_energy" 1
+        org.nlogo.sdm.gui.ConverterFigure "attributes" "attributes" 1 "FillColor" "Color" 130 188 183 193 279 50 50
+            org.nlogo.sdm.gui.WrappedConverter "5" "seaweed_energy"
+        org.nlogo.sdm.gui.StockFigure "attributes" "attributes" 1 "FillColor" "Color" 225 225 182 312 106 60 40
+            org.nlogo.sdm.gui.WrappedStock "fish_B" "1" 1
+        org.nlogo.sdm.gui.ReservoirFigure "attributes" "attributes" 1 "FillColor" "Color" 192 192 192 149 465 30 30
+        org.nlogo.sdm.gui.RateConnection 3 179 480 258 480 302 480 NULL NULL 0 0 0
+            org.jhotdraw.figures.ChopEllipseConnector REF 17
+            org.jhotdraw.standard.ChopBoxConnector REF 11
+            org.nlogo.sdm.gui.WrappedRate "fish_A" "fish_A_births"
+                org.nlogo.sdm.gui.WrappedReservoir  REF 12 0
+        org.nlogo.sdm.gui.ConverterFigure "attributes" "attributes" 1 "FillColor" "Color" 130 188 183 230 193 50 50
+            org.nlogo.sdm.gui.WrappedConverter "seaweed" "fish_B_energy"
+        org.nlogo.sdm.gui.ConverterFigure "attributes" "attributes" 1 "FillColor" "Color" 130 188 183 238 358 50 50
+            org.nlogo.sdm.gui.WrappedConverter "seaweed" "fish_A_energy"
+        org.nlogo.sdm.gui.ReservoirFigure "attributes" "attributes" 1 "FillColor" "Color" 192 192 192 161 109 30 30
+        org.nlogo.sdm.gui.RateConnection 3 191 124 257 124 296 124 NULL NULL 0 0 0
+            org.jhotdraw.figures.ChopEllipseConnector REF 27
+            org.jhotdraw.standard.ChopBoxConnector REF 15
+            org.nlogo.sdm.gui.WrappedRate "1" "fish_B_births"
+                org.nlogo.sdm.gui.WrappedReservoir  REF 16 0
+        org.nlogo.sdm.gui.BindingConnection 2 225 286 247 235 NULL NULL 0 0 0
+            org.jhotdraw.contrib.ChopDiamondConnector REF 13
+            org.jhotdraw.contrib.ChopDiamondConnector REF 23
+        org.nlogo.sdm.gui.BindingConnection 2 227 319 253 367 NULL NULL 0 0 0
+            org.jhotdraw.contrib.ChopDiamondConnector REF 13
+            org.jhotdraw.contrib.ChopDiamondConnector REF 25
+        org.nlogo.sdm.gui.BindingConnection 2 258 403 258 480 NULL NULL 0 0 0
+            org.jhotdraw.contrib.ChopDiamondConnector REF 25
+            org.nlogo.sdm.gui.ChopRateConnector REF 18
+        org.nlogo.sdm.gui.BindingConnection 2 252 195 257 124 NULL NULL 0 0 0
+            org.jhotdraw.contrib.ChopDiamondConnector REF 23
+            org.nlogo.sdm.gui.ChopRateConnector REF 28
+        org.nlogo.sdm.gui.ConverterFigure "attributes" "attributes" 1 "FillColor" "Color" 130 188 183 63 99 50 50
+            org.nlogo.sdm.gui.WrappedConverter "1" "fish_B_birth_threshold"
+        org.nlogo.sdm.gui.ConverterFigure "attributes" "attributes" 1 "FillColor" "Color" 130 188 183 52 454 50 50
+            org.nlogo.sdm.gui.WrappedConverter "1" "fish_A_birth_threshold"
+        org.nlogo.sdm.gui.BindingConnection 2 113 124 257 124 NULL NULL 0 0 0
+            org.jhotdraw.contrib.ChopDiamondConnector REF 45
+            org.nlogo.sdm.gui.ChopRateConnector REF 28
+        org.nlogo.sdm.gui.BindingConnection 2 101 479 258 480 NULL NULL 0 0 0
+            org.jhotdraw.contrib.ChopDiamondConnector REF 47
+            org.nlogo.sdm.gui.ChopRateConnector REF 18
+        org.nlogo.sdm.gui.BindingConnection 2 68 266 130 307 NULL NULL 0 0 0
+            org.jhotdraw.contrib.ChopDiamondConnector REF 9
+            org.nlogo.sdm.gui.ChopRateConnector REF 4
+        org.nlogo.sdm.gui.RateConnection 3 342 340 342 400 342 448 NULL NULL 0 0 0
+            org.jhotdraw.standard.ChopBoxConnector REF 1
+            org.jhotdraw.standard.ChopBoxConnector REF 11
+            org.nlogo.sdm.gui.WrappedRate "" "" REF 2 REF 12 0
+        org.nlogo.sdm.gui.RateConnection 3 341 276 341 218 341 158 NULL NULL 0 0 0
+            org.jhotdraw.standard.ChopBoxConnector REF 1
+            org.jhotdraw.standard.ChopBoxConnector REF 15
+            org.nlogo.sdm.gui.WrappedRate "" "" REF 2 REF 16 0
+        org.nlogo.sdm.gui.RateConnection 3 385 480 451 480 519 480 NULL NULL 0 0 0
+            org.jhotdraw.standard.ChopBoxConnector REF 11
+            org.jhotdraw.figures.ChopEllipseConnector
+                org.nlogo.sdm.gui.ReservoirFigure "attributes" "attributes" 1 "FillColor" "Color" 192 192 192 518 465 30 30
+            org.nlogo.sdm.gui.WrappedRate "1" "fish_A_deaths" REF 12
+                org.nlogo.sdm.gui.WrappedReservoir  0   REF 69
+        org.nlogo.sdm.gui.RateConnection 3 384 125 428 125 501 125 NULL NULL 0 0 0
+            org.jhotdraw.standard.ChopBoxConnector REF 15
+            org.jhotdraw.figures.ChopEllipseConnector
+                org.nlogo.sdm.gui.ReservoirFigure "attributes" "attributes" 1 "FillColor" "Color" 192 192 192 500 110 30 30
+            org.nlogo.sdm.gui.WrappedRate "1" "fish_B_deaths" REF 16
+                org.nlogo.sdm.gui.WrappedReservoir  0   REF 75
+        org.nlogo.sdm.gui.BindingConnection 2 271 209 428 125 NULL NULL 0 0 0
+            org.jhotdraw.contrib.ChopDiamondConnector REF 23
+            org.nlogo.sdm.gui.ChopRateConnector REF 72
+        org.nlogo.sdm.gui.BindingConnection 2 279 391 451 480 NULL NULL 0 0 0
+            org.jhotdraw.contrib.ChopDiamondConnector REF 25
+            org.nlogo.sdm.gui.ChopRateConnector REF 66
+        org.nlogo.sdm.gui.ConverterFigure "attributes" "attributes" 1 "FillColor" "Color" 130 188 183 70 187 50 50
+            org.nlogo.sdm.gui.WrappedConverter "1" "fishA_movement_energy"
+        org.nlogo.sdm.gui.ConverterFigure "attributes" "attributes" 1 "FillColor" "Color" 130 188 183 67 364 50 50
+            org.nlogo.sdm.gui.WrappedConverter "1" "fishB_movement_energy"
+        org.nlogo.sdm.gui.BindingConnection 2 119 212 230 217 NULL NULL 0 0 0
+            org.jhotdraw.contrib.ChopDiamondConnector REF 84
+            org.jhotdraw.contrib.ChopDiamondConnector REF 23
+        org.nlogo.sdm.gui.BindingConnection 2 116 388 238 383 NULL NULL 0 0 0
+            org.jhotdraw.contrib.ChopDiamondConnector REF 86
+            org.jhotdraw.contrib.ChopDiamondConnector REF 25
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

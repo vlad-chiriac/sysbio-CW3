@@ -11,27 +11,31 @@ to setup
   clear-all
   if depth [ depthDraw ]
   set-default-shape fishesA "fish 2"
-  create-fishesA fishA_number [
-    set color red
-    set size 1
-    setxy random-xcor random-ycor
-    set energy random 6  ;start with a random amt. of energy
-  ]
-  set-default-shape fishesB "fish 3"
-  create-fishesB fishB_number [
-    set color violet
-    set size 2
-    setxy random-xcor random-ycor
-    set energy random 8  ;start with a random amt. of energy
-  ]
+  if UseFishA [
+    create-fishesA fishA_number [
+      set color red
+      set size 1
+      setxy random-xcor random-ycor
+      set energy random 6  ;start with a random amt. of energy
+  ] ]
+  if UseFishB [
+    set-default-shape fishesB "fish 3"
+    create-fishesB fishB_number [
+      set color violet
+      set size 2
+      setxy random-xcor random-ycor
+      set energy random 8  ;start with a random amt. of energy
+  ] ]
   grow-seaweed
   reset-ticks
 end
 
 to go
   if not any? turtles [ stop ]
-  if not any? fishesA [ stop ]
-  if not any? fishesB [ stop ]
+  if UseFishA [
+    if not any? fishesA [ stop ] ]
+  if UseFishB [
+    if not any? fishesB [ stop ] ]
   grow-seaweed
   ask turtles [ ; go through all fishes concurrently. don't first go though all fishA, then fishB, because then the early bird (fishA) gets all the worms (seaseaweed)
     (ifelse
@@ -110,30 +114,32 @@ to depth_fishesB
 end
 
 to depthDraw
-  create-linesA 1 [
-    set color red
-    setxy min-pxcor fishesA_max_depth - 0.5
-    set pen-size 2
-    pen-down
-    while [ xcor < max-pxcor ] [ set xcor xcor + 0.5]
-    pen-up
-    setxy min-pxcor fishesA_min_depth - 0.5
-    pen-down
-    while [ xcor < max-pxcor ] [ set xcor xcor + 0.5]
-    hide-turtle
-  ]
-  create-linesB 1 [
-    set color violet
-    setxy min-pxcor fishesB_max_depth
-    set pen-size 2
-    pen-down
-    while [ xcor < max-pxcor ] [ set xcor xcor + 0.5]
-    pen-up
-    setxy min-pxcor fishesB_min_depth
-    pen-down
-    while [ xcor < max-pxcor ] [ set xcor xcor + 0.5]
-    hide-turtle
-  ]
+  if UseFishA [
+    create-linesA 1 [
+      set color red
+      setxy min-pxcor fishesA_max_depth - 0.5
+      set pen-size 2
+      pen-down
+      while [ xcor < max-pxcor ] [ set xcor xcor + 0.5]
+      pen-up
+      setxy min-pxcor fishesA_min_depth - 0.5
+      pen-down
+      while [ xcor < max-pxcor ] [ set xcor xcor + 0.5]
+      hide-turtle
+  ] ]
+  if UseFishB [
+    create-linesB 1 [
+      set color violet
+      setxy min-pxcor fishesB_max_depth
+      set pen-size 2
+      pen-down
+      while [ xcor < max-pxcor ] [ set xcor xcor + 0.5]
+      pen-up
+      setxy min-pxcor fishesB_min_depth
+      pen-down
+      while [ xcor < max-pxcor ] [ set xcor xcor + 0.5]
+      hide-turtle
+  ] ]
 end
 
 to eat-seaweed
@@ -173,13 +179,13 @@ end
 ; See Info tab for full copyright and license.
 @#$#@#$#@
 GRAPHICS-WINDOW
-1391
-10
-1883
-503
+1439
+15
+1890
+467
 -1
 -1
-11.805
+10.805
 1
 10
 1
@@ -200,9 +206,9 @@ ticks
 30.0
 
 BUTTON
-381
+395
 47
-436
+450
 80
 setup
 setup
@@ -217,9 +223,9 @@ NIL
 1
 
 BUTTON
-381
+395
 10
-436
+450
 43
 go
 go
@@ -242,7 +248,7 @@ seaweed-growth-rate
 seaweed-growth-rate
 0.0
 20.0
-20.0
+14.0
 1.0
 1
 NIL
@@ -257,32 +263,32 @@ seaweed-energy
 seaweed-energy
 0.0
 10.0
-3.0
+4.5
 0.5
 1
 NIL
 HORIZONTAL
 
 SLIDER
-31
+95
 10
-184
+232
 43
 fishA_number
 fishA_number
 0.0
 500.0
-156.0
+250.0
 1.0
 1
 NIL
 HORIZONTAL
 
 SLIDER
-22
-119
-224
-152
+18
+122
+220
+155
 fishesB_birth_threshold
 fishesB_birth_threshold
 0.0
@@ -294,10 +300,10 @@ NIL
 HORIZONTAL
 
 PLOT
-454
-10
-1387
-697
+459
+11
+1418
+716
 Populations
 Time
 Population
@@ -314,10 +320,10 @@ PENS
 "fish species B" 1.0 0 -8630108 true "" "plot count fishesB"
 
 MONITOR
-1069
-33
-1180
-78
+494
+39
+605
+84
 count species A
 count fishesA
 1
@@ -325,40 +331,40 @@ count fishesA
 11
 
 SLIDER
-32
+95
 45
-185
+233
 78
 fishB_number
 fishB_number
 0
 500
-58.0
+110.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-22
-85
-224
-118
+18
+88
+220
+121
 fishesA_birth_threshold
 fishesA_birth_threshold
 0
 fishesA_max_energy
-15.0
+30.0
 1
 1
 NIL
 HORIZONTAL
 
 MONITOR
-1183
-33
-1293
-78
+608
+39
+718
+84
 count species B
 count fishesB
 17
@@ -366,10 +372,10 @@ count fishesB
 11
 
 SLIDER
-242
-82
-448
-115
+235
+87
+441
+120
 fishesA_movement_energy
 fishesA_movement_energy
 0.01
@@ -381,10 +387,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-242
-116
-448
-149
+235
+121
+441
+154
 fishesB_movement_energy
 fishesB_movement_energy
 0.01
@@ -396,10 +402,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-206
-279
-391
-312
+236
+270
+421
+303
 fishesA_mating_days
 fishesA_mating_days
 0
@@ -411,15 +417,15 @@ NIL
 HORIZONTAL
 
 SLIDER
-206
-313
-391
-346
+236
+304
+421
+337
 fishesB_mating_days
 fishesB_mating_days
 0
 730
-730.0
+575.0
 1
 1
 NIL
@@ -449,7 +455,7 @@ fishesB_max_depth
 fishesB_max_depth
 fishesB_min_depth
 max-pycor
--2.0
+-10.0
 1
 1
 NIL
@@ -464,7 +470,7 @@ fishesA_min_depth
 fishesA_min_depth
 min-pycor
 fishesA_max_depth
--38.0
+-24.0
 1
 1
 NIL
@@ -486,10 +492,10 @@ NIL
 HORIZONTAL
 
 SWITCH
-141
-373
-244
-406
+109
+375
+212
+408
 depth
 depth
 1
@@ -497,10 +503,10 @@ depth
 -1000
 
 SWITCH
-234
-239
-373
-272
+261
+235
+400
+268
 MatingSeasons
 MatingSeasons
 0
@@ -575,7 +581,7 @@ SLIDER
 fishesA_birth_efficiency
 fishesA_birth_efficiency
 0.1
-1
+0.9
 0.8
 0.1
 1
@@ -590,7 +596,7 @@ SLIDER
 fishesB_birth_efficiency
 fishesB_birth_efficiency
 0.1
-1
+0.9
 0.2
 0.1
 1
@@ -598,25 +604,25 @@ NIL
 HORIZONTAL
 
 SLIDER
-196
+238
 10
-368
+388
 43
 fishesA_max_energy
 fishesA_max_energy
 1
 200
-55.0
+52.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-196
-45
-368
-78
+238
+44
+389
+77
 fishesB_max_energy
 fishesB_max_energy
 1
@@ -649,10 +655,10 @@ depth_seaweed concentrates more of the seaweed near the top
 1
 
 TEXTBOX
-265
-358
-415
-414
+228
+362
+378
+418
 depth creates boundaries for each fish species that are shown on the world map as coloured lines
 11
 0.0
@@ -702,6 +708,28 @@ depth_intensity affects how much of the seaweed grows near the top\nhigher numbe
 11
 0.0
 1
+
+SWITCH
+2
+10
+92
+43
+UseFishA
+UseFishA
+0
+1
+-1000
+
+SWITCH
+1
+45
+91
+78
+UseFishB
+UseFishB
+0
+1
+-1000
 
 @#$#@#$#@
 ## WHAT IS IT?
